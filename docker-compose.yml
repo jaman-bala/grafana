@@ -1,0 +1,17 @@
+version: '3.1'
+
+services:
+  grafana:
+    image: grafana/grafana:latest  # Используем последний стабильный образ Grafana
+    container_name: grafana        # Имя контейнера
+    ports:
+      - "3000:3000"                # Пробрасываем порт Grafana (по умолчанию 3000)
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin  # Установка логина администратора
+      - GF_SECURITY_ADMIN_PASSWORD=admin  # Установка пароля администратора
+    volumes:
+      - grafana_data:/var/lib/grafana  # Монтируем объем для сохранения данных
+    restart: always                   # Автоматический перезапуск в случае сбоя
+
+volumes:
+  grafana_data:
